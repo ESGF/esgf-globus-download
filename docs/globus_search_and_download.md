@@ -127,11 +127,11 @@ This section shows some use case examples
 By default the search will look for:
 
 * variable: `tas`
-* experiemnt_id: `historical`
+* experiment_id: `historical`
 * frequency: `mon`
-* insitution_id: `NASA-GISS`
+* institution_id: `NASA-GISS`
 
-runnning:
+running:
 
 ```bash
 esgf-globus-download -e [END_POINT] -u [USER]@globusid.org
@@ -167,7 +167,7 @@ Task ID: fa0f45b4-772b-11e9-8e59-029d279f7e24
 
 Going to: https://app.globus.org/activity/
 
-You can check on the satus
+You can check on the status
 
 ![activity](globus_activity.png)
 
@@ -194,7 +194,7 @@ https://app.globus.org/activity/fa0f45b4-772b-11e9-8e59-029d279f7e24/overview
 
 #### Passing keys to the search
 
-The search keys must be passed via a dictionary
+The search keys must be passed via a Python dictionary
 
 The search keys can be passed from the command line via the `-s` (or `--search_keys`) argument, for example the default search can be rewritten as:
 ```bash
@@ -228,7 +228,7 @@ globus:415a6320-e49c-11e5-9798-22000b9da45e/css03_data/CMIP6/CMIP/NASA-GISS/GISS
 Do you wish to continue [y]/n?
 ```
 
-One might want to search for multiple values for a field, this is obtain by passinbg the values as a list
+One might want to search for multiple values for a field, this is obtain by passing the values as a Python list
 
 Searching for both `ta` and `cl` in the above search would be done via:
 
@@ -257,14 +257,9 @@ globus:415a6320-e49c-11e5-9798-22000b9da45e/css03_data/CMIP6/CMIP/NASA-GISS/GISS
 Do you wish to continue [y]/n?
 ```
 
-Finally you can controll where the files go on your endpoint via the `-p` option
+Finally you can control where the files are download to on your endpoint via the `-p` option
 
 ```bash
 esgf-globus-download -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org --search-keywords "{'variable':'clt', 'experiment_id': 'amip', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"   -p /~/CWT/ESGF/
 ```
 
-
-
-```python
-
-```
