@@ -59,21 +59,27 @@ https://docs.globus.org/cli/reference/endpoint_activate/
 
 ## Script
 
-You can obtain this script at:
+You can obtain this script at: https://github.com/ESGF/esgf-globus-download
+
+```bash
+git clone git://github.com/ESGF/esgf-globus-download
+cd esgf-globus-download
+python setup.py
+```
+
 
 ### Options
 
 To see all options run:
 ```bash
-python search_and_download.py --help
+esgf-globus-download --help
 ```
 
 At the time this Notebook (2019/05/14) is written this leads to the following, but we encourage you to run it to make sure it is still true
 
 ```bash
-python search_and_download.py --help
-usage: search_and_download.py [-h] -e USER_ENDPOINT -u USERNAME [-p PATH] [-l]
-                              [-s SEARCH_KEYWORDS] [-d] [-V] [-n NODE]
+usage: esgf-globus-download [-h] -e USER_ENDPOINT -u USERNAME [-p PATH] [-l]
+                            [-s SEARCH_KEYWORDS] [-d] [-V] [-n NODE] [-y]
 
 To use this script, you must have the Globus Command Line Interface tools
 installed locally (see https://docs.globus.org/cli/) The host where you
@@ -86,6 +92,8 @@ fies at the user endpoint with the same name.
 
 required and optional arguments:
   -h, --help            show this help message and exit
+  -y, --no_question     Do not stop answers yes to all question (default:
+                        False)
 
 Globus related keywords:
   -e USER_ENDPOINT, --user-endpoint USER_ENDPOINT
@@ -100,8 +108,8 @@ Globus related keywords:
 Search related keywords:
   -s SEARCH_KEYWORDS, --search-keywords SEARCH_KEYWORDS
                         dictionary with search keys (default: {'variable':
-                        ['tas', 'clt'], 'experiment_id': 'historical',
-                        'frequency': 'mon', 'institution_id': 'NASA-GISS'})
+                        'tas', 'experiment_id': 'historical', 'frequency':
+                        'mon', 'institution_id': 'NASA-GISS'})
   -d, --distributed     search all nodes, not just local (default: False)
   -V, --verbose
   -n NODE, --node NODE  search node (default: https://esgf-node.llnl.gov/esg-
@@ -126,7 +134,7 @@ By default the search will look for:
 runnning:
 
 ```bash
-python search_and_download.py -e [END_POINT] -u [USER]@globusid.org
+esgf-globus-download -e [END_POINT] -u [USER]@globusid.org
 ```
 
 Leads to
@@ -190,13 +198,13 @@ The search keys must be passed via a dictionary
 
 The search keys can be passed from the command line via the `-s` (or `--search_keys`) argument, for example the default search can be rewritten as:
 ```bash
-python search_and_download.py -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org -s "{'variable':'tas', 'experiment_id': 'historical', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"
+esgf-globus-download -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org -s "{'variable':'tas', 'experiment_id': 'historical', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"
 ```
 
 Searching for `clt` rather than `tas` for an `amip` experiment would be done via:
 
 ```bash
-python search_and_download.py -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org --search_keywords "{'variable':'clt', 'experiment_id': 'amip', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"
+esgf-globus-download -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org --search_keywords "{'variable':'clt', 'experiment_id': 'amip', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"
 ```
 
 Which leads to:
@@ -225,7 +233,7 @@ One might want to search for multiple values for a field, this is obtain by pass
 Searching for both `ta` and `cl` in the above search would be done via:
 
 ```bash
-python search_and_download.py -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org --search-keywords "{'variable':['ta', 'cl'], 'experiment_id': 'amip', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"
+esgf-globus-download -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org --search-keywords "{'variable':['ta', 'cl'], 'experiment_id': 'amip', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"
 ```
 
 Which leads to:
@@ -252,6 +260,11 @@ Do you wish to continue [y]/n?
 Finally you can controll where the files go on your endpoint via the `-p` option
 
 ```bash
-python search_and_download.py -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org --search-keywords "{'variable':'clt', 'experiment_id': 'amip', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"   -p /~/CWT/ESGF/
+esgf-globus-download -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org --search-keywords "{'variable':'clt', 'experiment_id': 'amip', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"   -p /~/CWT/ESGF/
 ```
 
+
+
+```python
+
+```

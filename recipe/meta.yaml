@@ -1,0 +1,30 @@
+package:
+    name: esgf-globus-download
+    version: 1.0
+
+source:
+    git_url: git://github.com/ESGF/esgf-globus-download
+    git_rev: master
+
+build:
+    script: python setup.py install
+    number: 0
+    noarch: python
+
+requirements:
+  build:
+    - python {{ python}}
+    - setuptools
+  run:
+    - python {{ python }}
+    - requests
+    - globus-cli
+
+
+about:
+    home:  http://gitub.com/ESGF/esgf-globus-download
+    summary: Tools to search ESGF and download via Globus
+
+authors:
+    - doutriaux1
+
