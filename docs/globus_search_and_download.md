@@ -25,7 +25,7 @@ source activate globus
 
 ### Globus
 
-#### Selecting your end point
+#### Selecting your destination endpoint
 
 Go to your [globus endpoints page](https://app.globus.org/endpoints) (sign in if necessary)
 
@@ -38,9 +38,9 @@ Select the endpoint you which to transfer to, and lookup the endpoint uuid
 
 In this case it would be: `0ed5d694-6b5a-11e9-bf45-0e4a062367b8`
 
-#### Activating your end point
+#### Activating the source (ESGF) endpoint
 
-If you did not activate your endpoint the script will let you know and spit out a message similar to this:
+If you did not activate the ESGF endpoint hosting the data, the script will let you know and spit out a message similar to this:
 
 ```bash
 The endpoint could not be auto-activated and must be activated before it can be used.
@@ -192,11 +192,11 @@ https://app.globus.org/activity/fa0f45b4-772b-11e9-8e59-029d279f7e24/overview
 ```
 
 
-#### Passing keys to the search
+#### Passing terms to the search
 
-The search keys must be passed via a Python dictionary
+The search terms/keywords must be passed via a Python dictionary
 
-The search keys can be passed from the command line via the `-s` (or `--search_keys`) argument, for example the default search can be rewritten as:
+The search terms/keywords can be passed from the command line via the `-s` (or `--search_keywords`) argument, for example the default search can be rewritten as:
 ```bash
 esgf-globus-download -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org -s "{'variable':'tas', 'experiment_id': 'historical', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"
 ```
