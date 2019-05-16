@@ -1,9 +1,7 @@
 
 # Searching ESGF and downloading results via Globus
 
-This notebook is intended to help users search ESGF and download result programmatically, a fully web-based version is possible at:
-
-https://esgf.llnl.gov
+This document is intended to help users search ESGF and download the results programmatically using a Python script. If you'd prefer to use a web-based interface rather than a script, visit the ESGF website at https://esgf.llnl.gov. Tutorial videos showing the web-based approach of downloading data from the ESGF data warehouse to either NERSC or your personal computer should be available soon from the ESGF website.
 
 
 ## Setting Up The Environment
@@ -11,11 +9,11 @@ https://esgf.llnl.gov
 
 ### Python
 
-For this script to run you will need a Python with Globus CLI installed, for more details see:
+For this script to run you will need a Python environment with Globus CLI installed. For more details see:
 
 https://docs.globus.org/cli
 
-Provided you already have `conda` installed on your system (if not see: https://www.anaconda.com/distribution/) simply run (in bash)
+Provided you already have `conda` installed on your system (if not, see: https://www.anaconda.com/distribution/) simply run (in bash)
 
 ```bash
 conda create -n globus -c conda-forge globus-cli
@@ -27,11 +25,11 @@ source activate globus
 
 #### Selecting your end point
 
-Go to your [globus endpoints page](https://app.globus.org/endpoints) (sign in if necessary)
+Go to your [globus endpoints page](https://app.globus.org/endpoints) (sign in, if necessary).
 
 ![endpoints](globus_endpoints.png)
 
-Select the endpoint you which to transfer to, and lookup the endpoint uuid
+Select the endpoint you wish to transfer to, and lookup the endpoint UUID.
 
 
 ![endpoints](globus_endpoint.png)
@@ -40,7 +38,7 @@ In this case it would be: `0ed5d694-6b5a-11e9-bf45-0e4a062367b8`
 
 #### Activating your end point
 
-If you did not activate your endpoint the script will let you know and spit out a message similar to this:
+If you did not activate your endpoint, the script will let you know and spit out a message similar to this:
 
 ```bash
 The endpoint could not be auto-activated and must be activated before it can be used.
@@ -75,7 +73,7 @@ To see all options run:
 esgf-globus-download --help
 ```
 
-At the time this Notebook (2019/05/14) is written this leads to the following, but we encourage you to run it to make sure it is still true
+At the time this document was written (May 14, 2019), running the python script with the --help option produces the following output, however we encourage you to run the script yourself to make sure the output is still the same.
 
 ```bash
 usage: esgf-globus-download [-h] -e USER_ENDPOINT -u USERNAME [-p PATH] [-l]
@@ -119,7 +117,7 @@ Search related keywords:
 
 ### Examples
 
-This section shows some use case examples
+This section shows some use case examples.
 
 
 #### Default example
@@ -137,7 +135,7 @@ running:
 esgf-globus-download -e [END_POINT] -u [USER]@globusid.org
 ```
 
-Leads to
+Leads to:
 
 ```
 Search resulted in: 40 files
@@ -172,12 +170,12 @@ You can check on the status
 ![activity](globus_activity.png)
 
 
-Once the task is completed you receive an email from `Globus Notification <no-reply@globus.org>` with subject
+Once the task has completed, you'll receive an email from `Globus Notification <no-reply@globus.org>` with subject
 ```
 SUCCEEDED - CLI Batch
 ```
 
-and a body similar to the following
+and a body similar to the following:
 
 ```
 TASK DETAILS
@@ -194,14 +192,14 @@ https://app.globus.org/activity/fa0f45b4-772b-11e9-8e59-029d279f7e24/overview
 
 #### Passing keys to the search
 
-The search keys must be passed via a Python dictionary
+The search keys must be passed via a Python dictionary.
 
-The search keys can be passed from the command line via the `-s` (or `--search_keys`) argument, for example the default search can be rewritten as:
+The search keys can be passed from the command line via the `-s` (or `--search_keys`) argument. For example, the default search can be rewritten as:
 ```bash
 esgf-globus-download -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org -s "{'variable':'tas', 'experiment_id': 'historical', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"
 ```
 
-Searching for `clt` rather than `tas` for an `amip` experiment would be done via:
+Searching for `clt` rather than `tas` and for an `amip` experiment would be done via:
 
 ```bash
 esgf-globus-download -e 0ed5d694-6b5a-11e9-bf45-0e4a062367b8 -u doutriaux1@globusid.org --search_keywords "{'variable':'clt', 'experiment_id': 'amip', 'frequency':'mon', 'institution_id': 'NASA-GISS'}"
@@ -228,7 +226,7 @@ globus:415a6320-e49c-11e5-9798-22000b9da45e/css03_data/CMIP6/CMIP/NASA-GISS/GISS
 Do you wish to continue [y]/n?
 ```
 
-One might want to search for multiple values for a field, this is obtain by passing the values as a Python list
+One might want to search for multiple values for a field. This is accomplished by passing the values as a Python list.
 
 Searching for both `ta` and `cl` in the above search would be done via:
 
